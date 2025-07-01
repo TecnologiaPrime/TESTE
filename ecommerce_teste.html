@@ -37,36 +37,85 @@
     box-shadow: 0 2px 5px var(--cor-sombra);
   }
 
-  .header-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 24px;
-    flex-wrap: wrap;
-  }
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
-  .header-left {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
+.header-left h1 {
+  margin: 0;
+  font-size: 1.8em;
+  font-weight: 600;
+  color: var(--cor-texto);
+}
 
-  .header-left h1 {
-    margin: 0;
-    font-size: 1.8em;
-    font-weight: bold;
-    color: var(--cor-principal);
-  }
+.logo-destaque {
+  color: var(--cor-principal);
+  font-weight: 700;
+}
 
-  #campo-busca {
-    padding: 8px 16px;
-    border-radius: 20px;
-    border: 1px solid #ccc;
-    font-size: 1em;
-    width: 300px;
-    max-width: 100%;
-    transition: border-color 0.3s;
-  }
+.header-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  min-width: 240px;
+}
+
+#campo-busca {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px 16px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+  background: #fff;
+  box-shadow: 0 2px 6px var(--cor-sombra);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  margin-top: 10px;
+}
+
+#campo-busca:focus {
+  outline: none;
+  border-color: var(--cor-principal);
+  box-shadow: 0 0 0 2px rgba(242, 205, 0, 0.3);
+}
+
+.header-right {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn-admin,
+.btn-add,
+.btn-carrinho {
+  background: var(--cor-principal);
+  color: #000;
+  border: none;
+  padding: 10px 18px;
+  font-size: 0.95em;
+  border-radius: 12px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px var(--cor-sombra);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-admin:hover,
+.btn-add:hover,
+.btn-carrinho:hover {
+  background: #e2bc00;
+  transform: translateY(-2px);
+}
 
   #campo-busca:focus {
     outline: none;
@@ -285,82 +334,119 @@
   transform: scale(1.05);
 }
 
+/*zoom imagem*/
+#zoom-imagem-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  z-index: 1005;
+  cursor: zoom-out;
+  display: flex;
+}
+
 /*RESPONSIVO*/
 @media (max-width: 768px) {
   .header-top {
     flex-direction: column;
-    align-items: flex-start;
-    padding: 12px 16px;
-  }
-
-  .header-left {
-    width: 100%;
-    justify-content: space-between;
-    gap: 10px;
+    align-items: stretch;
+    padding: 6px 10px;
+    gap: 8px;
   }
 
   .header-left h1 {
-    font-size: 1.4em;
+    font-size: 1em;
+    margin-bottom: 0;
   }
 
   #campo-busca {
     width: 100%;
-    margin-top: 8px;
+    font-size: 0.85em;
+    padding: 6px 10px;
+    margin-top: 4px;
+    border-radius: 20px;
   }
 
   .header-right {
     width: 100%;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    margin-top: 12px;
-    gap: 8px;
+    justify-content: space-between;
+    gap: 6px;
+    margin-top: 4px;
   }
 
   .btn-editar, .btn-add, .btn-admin, .btn-carrinho {
-    flex: 1 1 calc(50% - 10px);
-    margin-bottom: 6px;
+    flex: 1 1 48%;
+    font-size: 0.8em;
+    padding: 6px 10px;
+    border-radius: 8px;
   }
 
   #filtros {
+    display: flex; /* importante para manter em linha */
     flex-wrap: nowrap;
     overflow-x: auto;
-    justify-content: flex-start;
-    gap: 10px;
-    padding: 10px 16px;
-    scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
+    gap: 6px;
+    padding: 6px 10px;
+    scrollbar-width: none; /* Firefox */
   }
 
   #filtros::-webkit-scrollbar {
-    display: none;
+    display: none; /* Chrome, Safari */
   }
 
   #filtros button {
     flex: 0 0 auto;
-    scroll-snap-align: start;
     white-space: nowrap;
+    scroll-snap-align: start;
+    font-size: 0.8em;
+    padding: 5px 10px;
+    border-radius: 8px;
+  }
+
+.produtos {
+    grid-template-columns: repeat(2, 1fr); /* 2 por linha no mobile */
+    gap: 12px;
+    padding-top: 160px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .produto {
+    font-size: 0.9em;
+  }
+
+  .produto img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
   }
 }
-
-  .produtos {
-    padding-top: 250px; /* mais espaço vertical p/ header empilhado */
-  }
+.header-left {
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+}
 </style>
 
 </head>
 <body>
 <header>
-  <div class="header-top">
-    <div class="header-left">
-      <h1>Prime</h1>
-      <input type="text" id="campo-busca" placeholder="🔍 Buscar produto..." />
-    </div>
-    <div class="header-right">
-      <button class="btn-admin" id="souUsuario">Administrador</button>
-      <button class="btn-add" id="btnNovoProduto" style="display:none;">+ Novo Produto</button>
-      <button class="btn-carrinho" id="abrirCarrinho">Carrinho</button>
-    </div>
+<div class="header-top">
+  <div class="header-left">
+    <h1><span class="logo-destaque">Prime</span> Acessórios</h1>
   </div>
+  <div class="header-center">
+    <input type="text" id="campo-busca" placeholder="🔍 Buscar produto..." />
+  </div>
+  <div class="header-right">
+    <button class="btn-admin" id="souUsuario">🔐 Admin</button>
+    <button class="btn-add" id="btnNovoProduto" style="display:none;">➕ Produto</button>
+    <button class="btn-carrinho" id="abrirCarrinho">🛒</button>
+  </div>
+</div>
 
   <!-- FILTROS DENTRO DO HEADER -->
   <div id="filtros">
@@ -408,6 +494,19 @@
   <button id="btn-cancelar-modal">Cancelar</button>
 </div>
 
+<!--abrir janela característica-->
+<div id="fundo-caracteristicas-view" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#00000088; z-index:999;"></div>
+
+<!-- Modal com o conteúdo -->
+<div id="modal-caracteristicas-view" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:white; padding:20px; border-radius:10px; z-index:1000; max-width:90%; width:400px; box-shadow: 0 0 15px rgba(0,0,0,0.3); font-family: Poppins, sans-serif;">
+  <h3 style="margin-top:0;">Características</h3>
+  <div id="conteudo-caracteristicas" style="margin: 10px 0; white-space: pre-wrap; line-height: 1.5;"></div></div>
+
+  <!--zoom imagem-->
+  <!-- Modal de imagem em zoom -->
+<div id="zoom-imagem-overlay" class="overlay" style="display:none; background:rgba(0,0,0,0.8); justify-content:center; align-items:center;">
+  <img id="zoom-imagem" style="max-width:90%; max-height:90%; border-radius:10px; box-shadow:0 0 15px rgba(0,0,0,0.5);" />
+</div>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
@@ -473,17 +572,37 @@
     };
     div.appendChild(btnAdd);
 
+    // Função para abrir a imagem em tela cheia (zoom)
+document.body.addEventListener('click', function (e) {
+  if (e.target.tagName === 'IMG' && e.target.closest('.product-card')) {
+    const src = e.target.src;
+    const zoomImg = document.getElementById('zoom-imagem');
+    const overlay = document.getElementById('zoom-imagem-overlay');
+    zoomImg.src = src;
+    overlay.style.display = 'flex';
+  }
+});
+
+// Fechar modal ao clicar fora da imagem
+document.getElementById('zoom-imagem-overlay').addEventListener('click', function () {
+  this.style.display = 'none';
+});
+
+
     // Botão "Características" abaixo do "Adicionar"
-    const btnCaracteristicas = document.createElement('button');
-    btnCaracteristicas.className = 'btn-caracteristicas';
-    btnCaracteristicas.innerText = 'Características';
-    const textoCaracteristicas = div.querySelector('.caracteristicas-texto');
-    btnCaracteristicas.onclick = () => {
-      const visivel = textoCaracteristicas.style.display === 'block';
-      textoCaracteristicas.style.display = visivel ? 'none' : 'block';
-      btnCaracteristicas.innerText = visivel ? 'Características' : 'Ocultar';
-    };
-    div.appendChild(btnCaracteristicas);
+const btnCaracteristicas = document.createElement('button');
+btnCaracteristicas.className = 'btn-caracteristicas';
+btnCaracteristicas.innerText = 'Características';
+btnCaracteristicas.onclick = () => {
+  const texto = prod.caracteristicas || 'Sem características cadastradas.';
+  abrirModalCaracteristicas(texto);
+};
+div.appendChild(btnCaracteristicas);
+
+// Fechar modal de características ao clicar fora
+document.getElementById('fundo-caracteristicas-view').addEventListener('click', () => {
+  fecharModalCaracteristicas();
+});
 
     // Botão "Excluir" para admin
     if (usuarioAdmin) {
@@ -540,6 +659,18 @@ document.getElementById('confirmar-senha').onclick = () => {
 document.getElementById('btnNovoProduto').onclick = () => abrirModal();
 document.querySelector('#filtros button[data-acao="todos"]')?.click();
 
+
+//abrir característica
+function abrirModalCaracteristicas(texto) {
+  document.getElementById('conteudo-caracteristicas').innerText = texto;
+  document.getElementById('modal-caracteristicas-view').style.display = 'block';
+  document.getElementById('fundo-caracteristicas-view').style.display = 'block';
+}
+
+function fecharModalCaracteristicas() {
+  document.getElementById('modal-caracteristicas-view').style.display = 'none';
+  document.getElementById('fundo-caracteristicas-view').style.display = 'none';
+}
 
     // FILTROS
 document.querySelectorAll('#filtros button').forEach(botao => {
