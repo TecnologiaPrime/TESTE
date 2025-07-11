@@ -530,7 +530,7 @@ footer {
   }
 }
 
-/* RESPONSIVO - MOBILE */
+/* responsivo */
 @media (max-width: 767px) {
   .header-top {
     flex-direction: column;
@@ -538,13 +538,16 @@ footer {
     text-align: center;
     padding: 10px 12px;
     gap: 6px;
+    max-width: 100%;
   }
 
   .header-left h1 {
-    font-size: 1.5em; /* AUMENTADO para maior destaque */
+    font-size: 1.2em; /* seu valor */
     margin: 0;
     line-height: 1.2;
     text-align: center;
+    color: var(--cor-texto);
+    font-weight: 600; /* adiciona um pouco mais de peso para melhor legibilidade */
   }
 
   .header-center {
@@ -553,71 +556,72 @@ footer {
     justify-content: center;
   }
 
-  #campo-busca {
+  /* Novo container para input + botões lado a lado */
+  .header-search-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     width: 100%;
-    max-width: 240px;
+    max-width: 320px; /* limite para não esticar demais */
+  }
+
+  #campo-busca {
+    flex: 1; /* ocupa o máximo possível */
     padding: 8px 14px;
-    font-size: 0.9em;
+    font-size: 0.8em; /* seu valor */
     margin: 4px 0;
     border-radius: 25px;
     border: 1px solid #ccc;
+    box-shadow: 0 2px 6px var(--cor-sombra); /* leve sombra para destacar */
+    transition: border-color 0.3s, box-shadow 0.3s;
   }
 
-  /* Container só para botões */
-  .header-actions {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    flex-wrap: nowrap;
-    width: 100%;
-    margin-top: 4px;
+  #campo-busca:focus {
+    outline: none;
+    border-color: var(--cor-principal);
+    box-shadow: 0 0 6px var(--cor-principal);
   }
 
   .btn-admin,
   .btn-carrinho {
-    font-size: 0.8em;
-    padding: 7px 12px;
+    font-size: 0.7em; /* seu valor */
+    padding: 6px 10px; /* seu valor */
     border-radius: 10px;
-    flex: 1;
+    flex: 0 0 auto; /* largura automática conforme padding */
     white-space: nowrap;
-    max-width: 120px;
+    font-weight: 600; /* melhorar peso do texto */
+    color: var(--cor-texto);
+    background: var(--cor-principal);
+    box-shadow: 0 2px 6px var(--cor-sombra);
+    transition: background 0.3s, transform 0.2s;
+    cursor: pointer;
+  }
+
+  .btn-admin:hover,
+  .btn-carrinho:hover {
+    background: #e2bc00;
+    transform: scale(1.05);
+  }
+
+  /* Remove margem superior para não duplicar */
+  .header-actions {
+    display: none; /* ou remova este bloco se não estiver usando */
   }
 
   .btn-add,
   .btn-caracteristicas,
   .btn-editar {
-    font-size: 0.85em;
-    padding: 6px 10px;
+    font-size: 0.75em; /* seu valor */
+    padding: 5px 8px; /* seu valor */
+    font-weight: 600;
+    cursor: pointer;
   }
 
   .input-qtd {
     width: 50px;
     padding: 6px 8px;
-    font-size: 0.85em;
+    font-size: 0.75em; /* seu valor */
     height: 38px;
-  }
-
-  .container-add {
-    flex-direction: row;
-    gap: 8px;
-    margin-top: 14px;
-  }
-
-  #filtros {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
-    padding: 4px 6px;
-  }
-
-  #filtros button {
-    flex: 0 0 auto;
-    white-space: nowrap;
-    margin: 2px 4px;
-    padding: 5px 9px;
-    font-size: 0.75em;
-    border-radius: 6px;
   }
 
   .produtos {
@@ -635,66 +639,46 @@ footer {
   }
 
   .product-card h3 {
-    font-size: 1em;
+    font-size: 0.9em;
     line-height: 1.2;
     margin: 6px 0 2px;
   }
 
-  .price {
-    font-size: 0.95em;
-    margin-top: 6px;
+  /* filtro de botões */
+  #filtros {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    padding: 4px 6px;
+    max-width: 100%;
   }
 
-  .esgotado-badge {
-    font-size: 12px;
-    padding: 4px 28px;
+  #filtros button {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    margin: 2px 4px;
+    padding: 4px 8px; /* seu valor */
+    font-size: 0.65em; /* seu valor */
+    border-radius: 6px;
+    font-weight: 600;
+    background: #eee;
+    transition: background 0.3s ease;
+    cursor: pointer;
   }
 
-  .carrinho {
-    width: 100%;
-    max-width: none;
-    right: -100%;
+  #filtros button:hover {
+    background: #ddd;
+    transform: scale(1.05);
   }
 
-  .carrinho.ativo {
-    right: 0;
-  }
-
-  .btn-fechar-carrinho {
-    font-size: 1em; /* menor */
-    top: 6px;
-    right: 8px;
-    padding: 4px;
-  }
-
-  .modal,
-  .modal-senha {
-    width: 90%;
-    max-width: 360px;
-    padding: 12px;
-  }
-
-  input[type="text"],
-  input[type="number"],
-  input[type="url"],
-  input[type="password"] {
-    font-size: 0.9em;
-  }
-
-  footer {
-    font-size: 0.7em;
-    padding: 6px;
-  }
-
-  #scrollTopBtn {
-    bottom: 90px;
-    right: 20px;
-    padding: 10px 14px;
-    font-size: 1em;
+  #filtros button.ativo {
+    background: var(--cor-principal);
+    color: var(--cor-texto);
+    font-weight: 700;
   }
 }
 </style>
-
 </head>
 <body>
 <header>
@@ -736,6 +720,9 @@ footer {
 <div class="carrinho" id="carrinho">
   <button class="btn-fechar-carrinho" id="fecharCarrinho">✖</button>
   <h3>Itens no Carrinho:</h3>
+  <div style="text-align: right; margin-top: 8px;">
+    <span id="limparCarrinho" style="cursor: pointer; color: #d9534f; font-weight: bold; font-size: 1em;">Limpar</span>
+  </div>
   <ul id="itensCarrinho"></ul>
   <button id="finalizarVenda" class="btn-add" style="margin-top: 20px; width: 100%;">✅ Finalizar Venda</button>
 </div>
@@ -747,6 +734,20 @@ footer {
   <input type="password" id="campo-senha" />
   <button id="confirmar-senha">Confirmar</button>
   <button id="cancelar-senha">Cancelar</button>
+</div>
+
+<!-- item não encontrado -->
+<div id="mensagem-nao-encontrado" style="display:none; 
+  position: fixed; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  color: red; 
+  font-size: 1.5rem; 
+  font-weight: bold;
+  z-index: 9999;
+  text-align: center;">
+  Item não encontrado
 </div>
 
 <div class="overlay" id="fundo-modal"></div>
@@ -854,7 +855,7 @@ const inputQtd = document.createElement('input');
 inputQtd.type = 'number';
 inputQtd.min = '1';
 inputQtd.value = '1';
-inputQtd.className = 'input-qtd'; // Agora estilizado via CSS
+inputQtd.className = 'input-qtd';
 
 // Botão de adicionar
 const btnAdd = document.createElement('button');
@@ -866,12 +867,53 @@ btnAdd.onclick = () => {
   if (!prod.esgotado) {
     const quantidade = parseInt(inputQtd.value) || 1;
     const precoFinal = prod.promocao || prod.preco;
-    for (let i = 0; i < quantidade; i++) {
+    const nomeProduto = prod.nome;
+    let itemExistente = Array.from(itensCarrinho.children)
+      .find(li => li.getAttribute('data-nome') === nomeProduto);
+    if (itemExistente) {
+      let qtdAtual = parseInt(itemExistente.getAttribute('data-qtd')) || 1;
+      qtdAtual += quantidade;
+      itemExistente.setAttribute('data-qtd', qtdAtual);
+      itemExistente.textContent = `${nomeProduto} (x${qtdAtual})`;
+      itemExistente.setAttribute('data-preco', precoFinal);
+    } else {
       const li = document.createElement('li');
-      li.textContent = prod.nome;
-      li.setAttribute('data-nome', prod.nome);
-      li.setAttribute('data-preco', precoFinal);
-      itensCarrinho.appendChild(li);
+li.setAttribute('data-nome', nomeProduto);
+li.setAttribute('data-preco', precoFinal);
+li.setAttribute('data-qtd', quantidade);
+
+const spanNome = document.createElement('span');
+spanNome.innerText = `${nomeProduto} (x${quantidade})`;
+
+const btnMais = document.createElement('button');
+btnMais.innerText = '+';
+btnMais.style.margin = '0 5px';
+btnMais.onclick = () => {
+  let qtd = parseInt(li.getAttribute('data-qtd')) || 1;
+  qtd++;
+  li.setAttribute('data-qtd', qtd);
+  spanNome.innerText = `${nomeProduto} (x${qtd})`;
+  salvarCarrinho();
+  atualizarContadorCarrinho();
+};
+
+const btnMenos = document.createElement('button');
+btnMenos.innerText = '−';
+btnMenos.onclick = () => {
+  let qtd = parseInt(li.getAttribute('data-qtd')) || 1;
+  if (qtd > 1) {
+    qtd--;
+    li.setAttribute('data-qtd', qtd);
+    spanNome.innerText = `${nomeProduto} (x${qtd})`;
+  }
+  salvarCarrinho();
+  atualizarContadorCarrinho();
+};
+
+li.appendChild(spanNome);
+li.appendChild(btnMais);
+li.appendChild(btnMenos);
+itensCarrinho.appendChild(li);
     }
 
     salvarCarrinho();
@@ -921,18 +963,20 @@ div.appendChild(containerAdd);
 
   document.getElementById('finalizarVenda').onclick = () => {
     const itens = Array.from(itensCarrinho.children).map(li => ({
-      nome: li.getAttribute('data-nome'),
-      preco: parseFloat(li.getAttribute('data-preco'))
-    }));
+  nome: li.getAttribute('data-nome'),
+  preco: parseFloat(li.getAttribute('data-preco')),
+  qtd: parseInt(li.getAttribute('data-qtd')) || 1
+}));
     if (itens.length === 0) return alert('Carrinho vazio!');
 
     let mensagem = `Olá, gostaria de finalizar o seguinte pedido:\n\n`;
-    let total = 0;
-    itens.forEach(item => {
-      mensagem += `• ${item.nome} - R$ ${item.preco.toFixed(2).replace('.', ',')}\n`;
-      total += item.preco;
-    });
-    mensagem += `\n *Total: R$ ${total.toFixed(2).replace('.', ',')}*`;
+let total = 0;
+itens.forEach(item => {
+  const subtotal = item.preco * item.qtd;
+  mensagem += `• ${item.nome} - ${item.qtd}x R$ ${item.preco.toFixed(2).replace('.', ',')} = R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
+  total += subtotal;
+});
+mensagem += `\n *Total: R$ ${total.toFixed(2).replace('.', ',')}*`;
 
     const numero = '5579996269748';
     window.open(`https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`, '_blank');
@@ -1021,6 +1065,15 @@ div.appendChild(containerAdd);
     });
   });
 
+  //limpar carrinho
+document.getElementById('limparCarrinho').onclick = () => {
+  if (confirm("Deseja realmente esvaziar o carrinho?")) {
+    itensCarrinho.innerHTML = '';
+    localStorage.removeItem('carrinhoItens');
+    atualizarContadorCarrinho();
+  }
+};
+
 function abrirModal(id = null, produto = {}) {
   document.getElementById('modal-nome').value = produto.nome || '';
   document.getElementById('modal-caracteristicas').value = produto.caracteristicas || '';
@@ -1078,6 +1131,29 @@ function abrirModal(id = null, produto = {}) {
     document.getElementById('fundo-modal').style.display = 'none';
   }
 
+  /*item não <encontrado></encontrado>*/
+  document.getElementById('campo-busca').addEventListener('input', function () {
+  const termo = this.value.toLowerCase();
+  let algumVisivel = false;
+
+  document.querySelectorAll('.product-card').forEach(card => {
+    const nome = card.querySelector('h3').innerText.toLowerCase();
+    if (nome.includes(termo)) {
+      card.style.display = 'block';
+      algumVisivel = true;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+
+  const mensagemNaoEncontrado = document.getElementById('mensagem-nao-encontrado');
+  if (!algumVisivel) {
+    mensagemNaoEncontrado.style.display = 'block';
+  } else {
+    mensagemNaoEncontrado.style.display = 'none';
+  }
+});
+
   document.getElementById('campo-busca').addEventListener('input', function () {
     const termo = this.value.toLowerCase();
     document.querySelectorAll('.product-card').forEach(card => {
@@ -1109,29 +1185,73 @@ function abrirModal(id = null, produto = {}) {
     contador.style.display = total > 0 ? 'inline-block' : 'none';
   }
 
-  function salvarCarrinho() {
-    const itens = Array.from(itensCarrinho.children).map(li => ({
-      nome: li.getAttribute('data-nome'),
-      preco: li.getAttribute('data-preco')
-    }));
-    localStorage.setItem('carrinhoItens', JSON.stringify(itens));
-  }
+function salvarCarrinho() {
+const itens = Array.from(itensCarrinho.children).map(li => ({
+  nome: li.getAttribute('data-nome'),
+  preco: parseFloat(li.getAttribute('data-preco')),
+  qtd: parseInt(li.getAttribute('data-qtd')) || 1
+}));
+  localStorage.setItem('carrinhoItens', JSON.stringify(itens));
+}
 
-  function carregarCarrinhoSalvo() {
-    const dados = localStorage.getItem('carrinhoItens');
-    if (dados) {
-      const itens = JSON.parse(dados);
-      itens.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = item.nome;
-        li.setAttribute('data-nome', item.nome);
-        li.setAttribute('data-preco', item.preco);
-        itensCarrinho.appendChild(li);
-      });
-      atualizarContadorCarrinho();
-    }
+function carregarCarrinhoSalvo() {
+  const dados = localStorage.getItem('carrinhoItens');
+  if (dados) {
+    const itens = JSON.parse(dados);
+    itens.forEach(item => {
+      const li = document.createElement('li');
+      li.setAttribute('data-nome', item.nome);
+      li.setAttribute('data-preco', item.preco);
+      li.setAttribute('data-qtd', item.qtd);
+
+      const spanNome = document.createElement('span');
+      const nomeProduto = item.nome;
+
+      const btnMais = document.createElement('button');
+      btnMais.innerText = '+';
+      btnMais.style.margin = '0 5px';
+
+      const btnMenos = document.createElement('button');
+      btnMenos.innerText = '−';
+
+      // Apenas atualiza o texto do produto
+      function atualizarTexto(qtd) {
+        spanNome.innerText = `${nomeProduto} (x${qtd})`;
+      }
+
+      btnMais.onclick = () => {
+        let qtd = parseInt(li.getAttribute('data-qtd')) || 1;
+        qtd++;
+        li.setAttribute('data-qtd', qtd);
+        atualizarTexto(qtd);
+        salvarCarrinho();
+        atualizarContadorCarrinho();
+      };
+
+      btnMenos.onclick = () => {
+        let qtd = parseInt(li.getAttribute('data-qtd')) || 1;
+        // Mesmo com qtd = 1, ainda permite clicar (mas não diminui abaixo de 1)
+        if (qtd > 1) {
+          qtd--;
+          li.setAttribute('data-qtd', qtd);
+          atualizarTexto(qtd);
+          salvarCarrinho();
+          atualizarContadorCarrinho();
+        }
+      };
+
+      atualizarTexto(item.qtd);
+
+      li.appendChild(spanNome);
+      li.appendChild(btnMais);
+      li.appendChild(btnMenos);
+      itensCarrinho.appendChild(li);
+    });
+
+    atualizarContadorCarrinho();
   }
-  carregarCarrinhoSalvo();
+}
+carregarCarrinhoSalvo();
 </script>
 </script>
 </body>
