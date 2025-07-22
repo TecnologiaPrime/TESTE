@@ -96,13 +96,14 @@
 .btn-admin,
 .btn-carrinho {
   background: var(--cor-principal);
-  color: #000;
+  color: var(--cor-texto);
   border: none;
   padding: 10px 18px;
-  font-size: 0.95em;
-  border-radius: 12px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background 0.3s, transform 0.2s;
   font-weight: bold;
-  transition: all 0.3s ease;
+  font-size: 0.95em;
   box-shadow: 0 2px 6px var(--cor-sombra);
   display: flex;
   align-items: center;
@@ -110,20 +111,19 @@
 }
 
 .btn-add {
-  background: #e2bc00;
-  color: #000;
+  background: var(--cor-principal);
+  color: var(--cor-texto);
   border: none;
   padding: 10px 18px;
-  font-size: 0.95em;
-  border-radius: 12px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background 0.3s, transform 0.2s;
   font-weight: bold;
-  transition: all 0.3s ease;
+  font-size: 0.95em;
   box-shadow: 0 2px 6px var(--cor-sombra);
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 6px;
-  height: 42px;
 }
 
 .container-add {
@@ -170,34 +170,12 @@ background: #e2bc00;
     margin-top: 10px;
   }
 
-   .btn-admin, .btn-carrinho {
-    background: var(--cor-principal);
-    color: var(--cor-texto);
-    border: none;
-    padding: 8px 15px;
-    cursor: pointer;
-    border-radius: 10px;
-    transition: background 0.3s, transform 0.2s;
-    font-weight: bold;
-  }
-
 .btn-editar {
     background: #1d7c00;
     color: #f2f2f2;
     border: none;
     padding: 8px 15px;
     cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
-    font-weight: bold;
-  }
-
-  .btn-add{
-    background: var(--cor-principal);
-    color: var(--cor-texto);
-    border: none;
-    padding: 8px 15px;
-    cursor: pointer;
-    border-radius: 10px;
     transition: background 0.3s, transform 0.2s;
     font-weight: bold;
   }
@@ -359,7 +337,7 @@ background: #e2bc00;
 
 .carrinho h3 {
   margin-top: 0;
-  color: var(--cor-principal);
+  color: #000000;
 }
 
 .overlay-carrinho {
@@ -478,15 +456,16 @@ background: #e2bc00;
   right: 10px;
   background: transparent;
   border: none;
-  font-size: 1.5em;
+  font-size: 1.2em;
   cursor: pointer;
-  color: #333;
+  color: #000000;
   font-weight: bold;
   z-index: 10;
 }
 
 .btn-fechar-carrinho:hover {
-  color: var(--cor-principal);
+  color: #4e4e4e;
+  transform: scale(1.1);
 }
 
 footer {
@@ -508,13 +487,13 @@ footer {
   border: none;
   font-size: 1.5em;
   font-weight: bold;
-  color: #333;
+  color: #000000;
   cursor: pointer;
   z-index: 1100;
 }
 
 .btn-fechar-pagina:hover {
-  color: var(--cor-principal);
+  color: #4e4e4e;
   transform: scale(1.1);
 }
 
@@ -530,154 +509,198 @@ footer {
   }
 }
 
-/* responsivo */
+/*fechar mensagem de item não encontrado ao abrir carrinho*/
+#overlay-carrinho {
+  z-index: 1000;
+}
+
+#carrinho {
+  z-index: 1100;
+}
+
+/*RESPONSIVO*/
+#filtros {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 10px 20px;
+  background: var(--cor-branco);
+  border-top: 1px solid #eee;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  gap: 8px;
+  white-space: nowrap;
+  justify-content: flex-start;  /* alinhado à esquerda */
+  scroll-behavior: smooth;      /* rolagem suave */
+}
+
+#filtros button {
+  flex: 0 0 auto;       /* botão com largura mínima e não encolhe */
+  background: #eee;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  white-space: nowrap;  /* texto do botão não quebra */
+  user-select: none;
+}
+
+#filtros button:hover {
+  background: #ddd;
+  transform: scale(1.05);
+}
+
+#filtros button.ativo {
+  background: var(--cor-principal);
+  color: var(--cor-texto);
+  font-weight: bold;
+}
+
+/* Scrollbar customizada para Webkit (Chrome, Safari) */
+#filtros::-webkit-scrollbar {
+  height: 6px;
+}
+
+#filtros::-webkit-scrollbar-thumb {
+  background-color: var(--cor-principal);
+  border-radius: 3px;
+}
+
+/* Opcional: esconder sombra horizontal no desktop para ficar clean */
+@media (min-width: 768px) {
+  #filtros {
+    flex-wrap: wrap;
+    overflow-x: visible;
+    white-space: normal;
+    justify-content: center;
+  }
+}
+
 @media (max-width: 767px) {
+  .produtos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* duas colunas no mobile */
+    gap: 16px;
+    padding: 180px 12px 30px;
+  }
+}
+
+/* Responsividade para mobile */
+@media (max-width: 767px) {
+  header {
+    padding: 8px 12px;
+  }
+
   .header-top {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 10px 12px;
-    gap: 6px;
-    max-width: 100%;
+    padding: 8px 12px;
+    gap: 1px;
   }
 
   .header-left h1 {
-    font-size: 1.2em; /* seu valor */
-    margin: 0;
-    line-height: 1.2;
-    text-align: center;
-    color: var(--cor-texto);
-    font-weight: 600; /* adiciona um pouco mais de peso para melhor legibilidade */
-  }
-
-  .header-center {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
-  /* Novo container para input + botões lado a lado */
-  .header-search-actions {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    width: 100%;
-    max-width: 320px; /* limite para não esticar demais */
+    font-size: 1.5em;
+    margin: 60 auto;
+    line-height: 1.1;
   }
 
   #campo-busca {
-    flex: 1; /* ocupa o máximo possível */
-    padding: 8px 14px;
-    font-size: 0.8em; /* seu valor */
-    margin: 4px 0;
-    border-radius: 25px;
-    border: 1px solid #ccc;
-    box-shadow: 0 2px 6px var(--cor-sombra); /* leve sombra para destacar */
-    transition: border-color 0.3s, box-shadow 0.3s;
+    max-width: 280px;
+    padding: 6px 12px;
+    font-size: 0.9em;
+    margin-top: 6px;
   }
 
-  #campo-busca:focus {
-    outline: none;
-    border-color: var(--cor-principal);
-    box-shadow: 0 0 6px var(--cor-principal);
+  .header-right {
+    gap: 6px;
+    margin-top: 6px;
   }
 
   .btn-admin,
-  .btn-carrinho {
-    font-size: 0.7em; /* seu valor */
-    padding: 6px 10px; /* seu valor */
-    border-radius: 10px;
-    flex: 0 0 auto; /* largura automática conforme padding */
-    white-space: nowrap;
-    font-weight: 600; /* melhorar peso do texto */
-    color: var(--cor-texto);
-    background: var(--cor-principal);
-    box-shadow: 0 2px 6px var(--cor-sombra);
-    transition: background 0.3s, transform 0.2s;
-    cursor: pointer;
+  .btn-carrinho,
+  .btn-add {
+    padding: 6px 12px;
+    font-size: 0.85em;
+    border-radius: 8px;
   }
 
-  .btn-admin:hover,
-  .btn-carrinho:hover {
-    background: #e2bc00;
-    transform: scale(1.05);
+  .cart-icon {
+    font-size: 16px;
+    padding: 6px;
   }
 
-  /* Remove margem superior para não duplicar */
-  .header-actions {
-    display: none; /* ou remova este bloco se não estiver usando */
-  }
-
-  .btn-add,
-  .btn-caracteristicas,
-  .btn-editar {
-    font-size: 0.75em; /* seu valor */
-    padding: 5px 8px; /* seu valor */
-    font-weight: 600;
-    cursor: pointer;
-  }
-
-  .input-qtd {
-    width: 50px;
-    padding: 6px 8px;
-    font-size: 0.75em; /* seu valor */
-    height: 38px;
-  }
-
-  .produtos {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    padding: 150px 10px 30px;
-  }
-
+  /* Cards ainda menores no mobile */
   .product-card {
-    padding: 12px;
+    padding: 10px 12px;
+    font-size: 0.85em;
   }
 
   .product-card img {
-    height: 150px;
+    height: 140px;
   }
 
   .product-card h3 {
-    font-size: 0.9em;
-    line-height: 1.2;
-    margin: 6px 0 2px;
-  }
-
-  /* filtro de botões */
-  #filtros {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
-    padding: 4px 6px;
-    max-width: 100%;
-  }
-
-  #filtros button {
-    flex: 0 0 auto;
-    white-space: nowrap;
-    margin: 2px 4px;
-    padding: 4px 8px; /* seu valor */
-    font-size: 0.65em; /* seu valor */
-    border-radius: 6px;
-    font-weight: 600;
-    background: #eee;
-    transition: background 0.3s ease;
-    cursor: pointer;
-  }
-
-  #filtros button:hover {
-    background: #ddd;
-    transform: scale(1.05);
-  }
-
-  #filtros button.ativo {
-    background: var(--cor-principal);
-    color: var(--cor-texto);
-    font-weight: 700;
+    font-size: 1.2em;
   }
 }
+
+@media (max-width: 767px) {
+  .btn-caracteristicas {
+    width: 70%;           /* largura menor */
+    padding: 8px 14px;    /* menos padding para ficar compacto */
+    font-size: 0.9em;     /* fonte menor */
+    border-radius: 10px;
+    margin: 10px auto 12px;
+    display: block;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: background 0.3s ease, transform 0.15s ease;
+  }
+
+  .btn-caracteristicas:hover,
+  .btn-caracteristicas:focus {
+    background: #5a5a5a;
+    transform: scale(1.05);
+  }
+}
+
+@media (max-width: 767px) {
+  .esgotado-badge {
+    top: 24%;              /* posiciona mais pra cima */
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-25deg); /* leve ajuste no ângulo */
+    padding: 4px 25px;     /* menor padding para ocupar menos espaço */
+    font-size: 12px;       /* fonte menor mas legível */
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); /* sombra mais suave */
+    pointer-events: none;
+    white-space: nowrap;   /* impede quebra de linha */
+    max-width: 90%;        /* evita sair da tela */
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media (max-width: 767px) {
+  .input-qtd {
+    width: 45px;
+    padding: 6px 8px;
+    font-size: 0.85em;
+    height: 25px;
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 767px) {
+  .product-card .price {
+    font-size: 1.2em !important;
+  }
+
+  .product-card .promocao {
+    font-size: 1.2em !important;
+    color: #d9534f /* cor de destaque */
+  }
+}
+
 </style>
 </head>
 <body>
@@ -745,7 +768,7 @@ footer {
   color: red; 
   font-size: 1.5rem; 
   font-weight: bold;
-  z-index: 9999;
+  z-index: 500; /* menor que o carrinho */
   text-align: center;">
   Item não encontrado
 </div>
@@ -986,11 +1009,23 @@ mensagem += `\n *Total: R$ ${total.toFixed(2).replace('.', ',')}*`;
     atualizarContadorCarrinho();
   };
 
-  document.getElementById('souUsuario').onclick = () => {
-    document.getElementById('modal-senha').style.display = 'block';
-    document.getElementById('fundo-senha').style.display = 'block';
-    document.getElementById('campo-senha').value = '';
-  };
+document.getElementById('souUsuario').onclick = () => {
+  document.getElementById('modal-senha').style.display = 'block';
+  document.getElementById('fundo-senha').style.display = 'block';
+
+  const inputSenha = document.getElementById('campo-senha');
+  inputSenha.value = '';
+  inputSenha.focus();
+};
+
+// Adicione o listener fora do onclick, só uma vez, para o input de senha:
+const inputSenha = document.getElementById('campo-senha');
+inputSenha.addEventListener('keydown', function(event) {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    document.getElementById('confirmar-senha').click();
+  }
+});
 
   document.getElementById('cancelar-senha').onclick = () => {
     document.getElementById('modal-senha').style.display = 'none';
@@ -1168,7 +1203,8 @@ function abrirModal(id = null, produto = {}) {
   btnCarrinho.onclick = () => {
     carrinho.classList.toggle('ativo');
     overlayCarrinho.classList.toggle('ativo');
-  };
+};
+
   overlayCarrinho.onclick = () => {
     carrinho.classList.remove('ativo');
     overlayCarrinho.classList.remove('ativo');
