@@ -95,7 +95,7 @@
 
 .btn-admin,
 .btn-carrinho {
-  background: var(--cor-principal);
+  background: #e2bc00;;
   color: var(--cor-texto);
   border: none;
   padding: 10px 18px;
@@ -127,7 +127,7 @@
 }
 
 .btn-add1 {
-  background: var(--cor-principal);
+  background: #e2bc00;;
   color: var(--cor-texto);
   border: none;
   padding: 10.8px 18px;
@@ -666,11 +666,11 @@ footer {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* duas colunas no mobile */
     gap: 16px;
-    padding: 220px 12px 30px;
+    padding: 226px 12px 30px;
   }
 }
 
-/* Responsividade extra para telas pequenas */
+/* Modal ao clicar em ADM*/
 @media (max-width: 480px) {
   .modal,
   .modal-senha {
@@ -745,13 +745,14 @@ footer {
   justify-content: center; /* centraliza horizontalmente */
 }
 
-  .btn-add {
-    padding: 6px 12px;
-    font-size: 0.85em;
-    border-radius: 8px;
-    flex: 1; /* para botões terem tamanho igual */
-    max-width: 120px;
-  }
+.btn-add {
+  padding: 6px 12px;
+  font-size: 0.85em;
+  border-radius: 8px;
+  flex: 1;
+  max-width: 120px;
+  margin-top: -4px; /* sobe o botão levemente */
+}
   
   .btn-add1 {
   padding: 8px 16px;
@@ -795,7 +796,7 @@ footer {
   }
 
   .product-card h3 {
-    font-size: 1.1em;
+    font-size: 1em;
   }
 }
 
@@ -879,7 +880,6 @@ footer {
     text-decoration: none; /* garantir sem tachado */
   }
 }
-
 
 </style>
 </head>
