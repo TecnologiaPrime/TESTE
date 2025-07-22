@@ -881,6 +881,40 @@ footer {
   }
 }
 
+/*botão finalizar venda*/
+#finalizarVenda {
+  margin-top: 20px;
+  padding: 12px 16px;
+  font-size: 1em;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: var(--cor-principal);
+  color: var(--cor-texto);
+  border: none;
+  width: 100%; /* padrão mobile: ocupa 100% da largura */
+  max-width: 100%; /* garante no mobile */
+  box-sizing: border-box;
+  transition: background-color 0.3s ease;
+  text-align: center; /* CENTRALIZA TEXTO */
+}
+
+#finalizarVenda:hover {
+  background-color: #d4b800;
+}
+
+/* Desktop */
+/* Mobile: até 767px */
+@media (max-width: 767px) {
+  #finalizarVenda {
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 20px;
+    padding: 12px 16px;
+    font-size: 1em;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -896,7 +930,7 @@ footer {
     <button class="btn-admin" id="souUsuario">🔐 Admin</button>
     <button class="btn-add1" id="btnNovoProduto" style="display:none;">🆕 Novo</button>
     <button class="btn-carrinho" id="abrirCarrinho">
-      🛒 Carrinho <span id="contador-carrinho" style="background:red;color:#fff;border-radius:50%;padding:2px 6px;font-size:0.8em;display:none;">0</span>
+      🛒 Itens <span id="contador-carrinho" style="background:red;color:#fff;border-radius:50%;padding:2px 6px;font-size:0.8em;display:none;">0</span>
     </button>
   </div>
 
@@ -927,7 +961,7 @@ footer {
     <span id="limparCarrinho" style="cursor: pointer; color: #d9534f; font-weight: bold; font-size: 1em;">Limpar</span>
   </div>
   <ul id="itensCarrinho"></ul>
-  <button id="finalizarVenda" class="btn-add" style="margin-top: 20px; width: 100%;">✅ Finalizar Venda</button>
+  <button id="finalizarVenda" class="btn-add">✅ Finalizar Venda</button>
 </div>
 <div class="overlay-carrinho" id="overlay-carrinho"></div>
 
@@ -1066,57 +1100,73 @@ btnAdd.className = 'btn-add';
 btnAdd.innerText = 'Adicionar';
 btnAdd.disabled = prod.esgotado;
 btnAdd.style.opacity = prod.esgotado ? '0.5' : '1';
+
 btnAdd.onclick = () => {
   if (!prod.esgotado) {
     const quantidade = parseInt(inputQtd.value) || 1;
     const precoFinal = prod.promocao || prod.preco;
     const nomeProduto = prod.nome;
+
+    // Verifica se já tem esse item no carrinho
     let itemExistente = Array.from(itensCarrinho.children)
       .find(li => li.getAttribute('data-nome') === nomeProduto);
+
     if (itemExistente) {
+      // Atualiza quantidade existente sem perder os botões
       let qtdAtual = parseInt(itemExistente.getAttribute('data-qtd')) || 1;
       qtdAtual += quantidade;
       itemExistente.setAttribute('data-qtd', qtdAtual);
-      itemExistente.textContent = `${nomeProduto} (x${qtdAtual})`;
       itemExistente.setAttribute('data-preco', precoFinal);
+
+      // Atualiza texto no <span> interno
+      const spanExistente = itemExistente.querySelector('span');
+      if (spanExistente) {
+        spanExistente.innerText = `${nomeProduto} (x${qtdAtual})`;
+      } else {
+        // Se por algum motivo não tiver o span, cria um novo
+        const novoSpan = document.createElement('span');
+        novoSpan.innerText = `${nomeProduto} (x${qtdAtual})`;
+        itemExistente.insertBefore(novoSpan, itemExistente.firstChild);
+      }
     } else {
+      // Cria novo item no carrinho
       const li = document.createElement('li');
-li.setAttribute('data-nome', nomeProduto);
-li.setAttribute('data-preco', precoFinal);
-li.setAttribute('data-qtd', quantidade);
+      li.setAttribute('data-nome', nomeProduto);
+      li.setAttribute('data-preco', precoFinal);
+      li.setAttribute('data-qtd', quantidade);
 
-const spanNome = document.createElement('span');
-spanNome.innerText = `${nomeProduto} (x${quantidade})`;
+      const spanNome = document.createElement('span');
+      spanNome.innerText = `${nomeProduto} (x${quantidade})`;
 
-const btnMais = document.createElement('button');
-btnMais.innerText = '+';
-btnMais.style.margin = '0 5px';
-btnMais.onclick = () => {
-  let qtd = parseInt(li.getAttribute('data-qtd')) || 1;
-  qtd++;
-  li.setAttribute('data-qtd', qtd);
-  spanNome.innerText = `${nomeProduto} (x${qtd})`;
-  salvarCarrinho();
-  atualizarContadorCarrinho();
-};
+      const btnMais = document.createElement('button');
+      btnMais.innerText = '+';
+      btnMais.style.margin = '0 5px';
+      btnMais.onclick = () => {
+        let qtd = parseInt(li.getAttribute('data-qtd')) || 1;
+        qtd++;
+        li.setAttribute('data-qtd', qtd);
+        spanNome.innerText = `${nomeProduto} (x${qtd})`;
+        salvarCarrinho();
+        atualizarContadorCarrinho();
+      };
 
-const btnMenos = document.createElement('button');
-btnMenos.innerText = '−';
-btnMenos.onclick = () => {
-  let qtd = parseInt(li.getAttribute('data-qtd')) || 1;
-  if (qtd > 1) {
-    qtd--;
-    li.setAttribute('data-qtd', qtd);
-    spanNome.innerText = `${nomeProduto} (x${qtd})`;
-  }
-  salvarCarrinho();
-  atualizarContadorCarrinho();
-};
+      const btnMenos = document.createElement('button');
+      btnMenos.innerText = '−';
+      btnMenos.onclick = () => {
+        let qtd = parseInt(li.getAttribute('data-qtd')) || 1;
+        if (qtd > 1) {
+          qtd--;
+          li.setAttribute('data-qtd', qtd);
+          spanNome.innerText = `${nomeProduto} (x${qtd})`;
+          salvarCarrinho();
+          atualizarContadorCarrinho();
+        }
+      };
 
-li.appendChild(spanNome);
-li.appendChild(btnMais);
-li.appendChild(btnMenos);
-itensCarrinho.appendChild(li);
+      li.appendChild(spanNome);
+      li.appendChild(btnMais);
+      li.appendChild(btnMenos);
+      itensCarrinho.appendChild(li);
     }
 
     salvarCarrinho();
