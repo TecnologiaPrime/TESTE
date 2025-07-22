@@ -114,7 +114,23 @@
   background: var(--cor-principal);
   color: var(--cor-texto);
   border: none;
-  padding: 10px 18px;
+  padding: 12px 18px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background 0.3s, transform 0.2s;
+  font-weight: bold;
+  font-size: 0.95em;
+  box-shadow: 0 2px 6px var(--cor-sombra);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-add1 {
+  background: var(--cor-principal);
+  color: var(--cor-texto);
+  border: none;
+  padding: 10.8px 18px;
   cursor: pointer;
   border-radius: 10px;
   transition: background 0.3s, transform 0.2s;
@@ -127,6 +143,14 @@
 }
 
 .container-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.container-add1 {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -157,6 +181,10 @@ background: #e2bc00;
   transform: translateY(-2px);
 }
 
+.btn-add1:hover {
+background: #e2bc00;
+  transform: translateY(-2px);
+}
 
   #campo-busca:focus {
     outline: none;
@@ -191,6 +219,11 @@ background: #e2bc00;
   }
 
     .btn-add:hover {
+      background: #e2bc00;
+    transform: scale(1.05);
+  }
+
+  .btn-add1:hover {
       background: #e2bc00;
     transform: scale(1.05);
   }
@@ -355,45 +388,95 @@ background: #e2bc00;
   display: block;
 }
 
-  .modal, .modal-senha {
-    display: none;
-    position: fixed;
-    z-index: 1002;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background: var(--cor-branco);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 0 12px rgba(0,0,0,0.2);
-  }
+.modal,
+.modal-senha {
+  display: none;
+  position: fixed;
+  z-index: 1002;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--cor-branco);
+  padding: 24px 32px; /* padding maior para desktop */
+  border-radius: 12px;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 500px;   /* largura ideal em telas grandes */
+  max-height: 90vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
 
-  .overlay {
-    display: none;
-    position: fixed;
-    top:0; left:0; right:0; bottom:0;
-    background: rgba(0,0,0,0.5);
-    z-index: 1001;
-  }
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1001;
+}
 
-  input[type="text"], input[type="number"], input[type="url"], input[type="password"] {
+/* Inputs */
+input[type="text"],
+input[type="number"],
+input[type="url"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+/* Labels */
+label {
+  font-weight: 600;
+  color: var(--cor-texto);
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* Botões no rodapé do modal */
+.modal .botoes,
+.modal-senha .botoes {
+  display: flex;
+  justify-content: flex-end;  /* alinhados à direita */
+  gap: 12px;
+  margin-top: 20px;
+}
+
+/* Estilo dos botões */
+.modal .botoes button,
+.modal-senha .botoes button {
+  padding: 10px 20px;
+  font-size: 0.95em;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: var(--cor-primaria, #f2cd00);
+  color: #000;
+  transition: background 0.2s ease;
+}
+
+.modal .botoes button:hover,
+.modal-senha .botoes button:hover {
+  background-color: #e0bc00;
+}
+
+/* Área principal do site */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+  .modal .botoes button,
+  .modal-senha .botoes button {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 12px;
-    font-size: 1em;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-  }
-
-  label {
-    font-weight: 600;
-    color: var(--cor-texto);
-  }
-
-  main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
   }
 
   /*CARACTERÍSTICA*/
@@ -523,12 +606,12 @@ footer {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
-  padding: 10px 20px;
+  padding: 5px 20px;
   background: var(--cor-branco);
   border-top: 1px solid #eee;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
-  gap: 8px;
+  gap: 5px;
   white-space: nowrap;
   justify-content: flex-start;  /* alinhado à esquerda */
   scroll-behavior: smooth;      /* rolagem suave */
@@ -538,7 +621,7 @@ footer {
   flex: 0 0 auto;       /* botão com largura mínima e não encolhe */
   background: #eee;
   border: none;
-  padding: 8px 14px;
+  padding: 5px 10px;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -583,46 +666,118 @@ footer {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* duas colunas no mobile */
     gap: 16px;
-    padding: 180px 12px 30px;
+    padding: 220px 12px 30px;
+  }
+}
+
+/* Responsividade extra para telas pequenas */
+@media (max-width: 480px) {
+  .modal,
+  .modal-senha {
+    padding: 20px;
+    font-size: 0.95em;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="url"],
+  input[type="password"] {
+    font-size: 0.95em;
+    padding: 8px 12px;
+  }
+
+  .modal .botoes,
+  .modal-senha .botoes {
+    flex-direction: column;
+    align-items: stretch;
   }
 }
 
 /* Responsividade para mobile */
 @media (max-width: 767px) {
   header {
-    padding: 8px 12px;
+    padding: 1px 1px;
   }
 
   .header-top {
-    padding: 8px 12px;
-    gap: 1px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px; /* espaço vertical entre itens */
+  }
+
+  .header-left {
+    /* centraliza o título */
+    display: flex;
+    justify-content: center;
   }
 
   .header-left h1 {
-    font-size: 1.5em;
-    margin: 60 auto;
+    font-size: 1.9em;
+    margin: 0; /* remove margem estranha */
     line-height: 1.1;
+    text-align: center;
   }
 
   #campo-busca {
-    max-width: 280px;
+    max-width: 100%;
+    width: 100%;
     padding: 6px 12px;
     font-size: 0.9em;
-    margin-top: 6px;
+    box-sizing: border-box;
   }
 
   .header-right {
-    gap: 6px;
-    margin-top: 6px;
+    display: flex;
+    justify-content: center;
+    gap: 12px; /* espaço entre os botões */
   }
 
-  .btn-admin,
-  .btn-carrinho,
+ .btn-carrinho {
+  padding: 8px 16px;
+  font-size: 0.7em;
+  border-radius: 8px;
+  flex: 1;
+  max-width: 160px;
+  min-width: 100px;
+  text-align: center;      /* centraliza texto horizontalmente */
+  display: flex;           /* para centralizar verticalmente */
+  align-items: center;     /* centraliza verticalmente */
+  justify-content: center; /* centraliza horizontalmente */
+}
+
   .btn-add {
     padding: 6px 12px;
     font-size: 0.85em;
     border-radius: 8px;
+    flex: 1; /* para botões terem tamanho igual */
+    max-width: 120px;
   }
+  
+  .btn-add1 {
+  padding: 8px 16px;
+  font-size: 0.7em;
+  border-radius: 8px;
+  flex: 1;
+  max-width: 160px;
+  min-width: 100px;
+  text-align: center;      /* centraliza texto horizontalmente */
+  display: flex;           /* para centralizar verticalmente */
+  align-items: center;     /* centraliza verticalmente */
+  justify-content: center; /* centraliza horizontalmente */
+}
+
+  .btn-admin {
+  padding: 8px 16px;
+  font-size: 0.7em;
+  border-radius: 8px;
+  flex: 1;
+  max-width: 160px;
+  min-width: 100px;
+  text-align: center;      /* centraliza texto horizontalmente */
+  display: flex;           /* para centralizar verticalmente */
+  align-items: center;     /* centraliza verticalmente */
+  justify-content: center; /* centraliza horizontalmente */
+}
 
   .cart-icon {
     font-size: 16px;
@@ -640,26 +795,42 @@ footer {
   }
 
   .product-card h3 {
-    font-size: 1.2em;
+    font-size: 1.1em;
   }
 }
 
 @media (max-width: 767px) {
   .btn-caracteristicas {
-    width: 70%;           /* largura menor */
-    padding: 8px 14px;    /* menos padding para ficar compacto */
-    font-size: 0.9em;     /* fonte menor */
-    border-radius: 10px;
-    margin: 10px auto 12px;
+    width: 120px;               /* largura fixa */
+    padding: 8px 0;
+    font-size: 0.8em;
+    border-radius: 5px;
+    margin: 10px auto 12px;     /* centraliza horizontalmente */
     display: block;
+    text-align: center;         /* texto centralizado */
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background: #5a5a5a;
+    color: white;
     transition: background 0.3s ease, transform 0.15s ease;
   }
 
   .btn-caracteristicas:hover,
   .btn-caracteristicas:focus {
-    background: #5a5a5a;
-    transform: scale(1.05);
+    background: #444;
+    transform: scale(1.02);
+  }
+}
+
+@media (max-width: 767px) {
+.btn-editar {
+    background: #1d7c00;
+    color: #f2f2f2;
+    border-radius: 5px;
+    font-size: 0.8em;
+    padding: 7px 11px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    font-weight: bold;
   }
 }
 
@@ -693,13 +864,22 @@ footer {
 @media (max-width: 767px) {
   .product-card .price {
     font-size: 1.2em !important;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 6px;
+    color: #292828;
   }
 
   .product-card .promocao {
-    font-size: 1.2em !important;
-    color: #d9534f /* cor de destaque */
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1em !important;
+    font-weight: bold;
+    color: #eb2922; /* vermelho para promoção */
+    text-decoration: none; /* garantir sem tachado */
   }
 }
+
 
 </style>
 </head>
@@ -710,13 +890,13 @@ footer {
     <h1><span class="logo-destaque">Prime</span> Acessórios</h1>
   </div>
   <div class="header-center">
-    <input type="text" id="campo-busca" placeholder="🔍 Buscar produto..." />
+    <input type="text" id="campo-busca" placeholder="Buscar produto..." />
   </div>
   <div class="header-right">
     <button class="btn-admin" id="souUsuario">🔐 Admin</button>
-    <button class="btn-add" id="btnNovoProduto" style="display:none;">➕ Produto</button>
+    <button class="btn-add1" id="btnNovoProduto" style="display:none;">🆕 Novo</button>
     <button class="btn-carrinho" id="abrirCarrinho">
-      🛒 <span id="contador-carrinho" style="background:red;color:#fff;border-radius:50%;padding:2px 6px;font-size:0.8em;display:none;">0</span>
+      🛒 Carrinho <span id="contador-carrinho" style="background:red;color:#fff;border-radius:50%;padding:2px 6px;font-size:0.8em;display:none;">0</span>
     </button>
   </div>
 
